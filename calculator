@@ -1,0 +1,33 @@
+import re
+print("first calculator ")
+print("type quit to exit\n")
+
+previous = 0
+run = True
+
+def faireMath():
+    global run
+    global previous
+    # allows to use type outside the function
+    if previous ==0:
+       equation = input("enter equation:")
+    else:
+        equation = input(str(previous))
+
+    if equation == "quit":
+        print("Bye")
+        run = False
+    else:
+        #perform regex limit user not to use python command
+        equation = re.sub('[a-zA-Z,.:()" "]', '', equation)
+    if previous == 0:
+        previous = eval(equation)
+        # this will evaluate the numbers
+    else:
+        previous = eval(str(previous) + equation)
+
+
+        #print("you typed:", previous)
+
+while run:
+    faireMath()
